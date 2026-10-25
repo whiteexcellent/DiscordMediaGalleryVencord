@@ -6,7 +6,7 @@
 
 import { Button } from "@components/Button";
 import { copyToClipboard } from "@utils/clipboard";
-import { MessageActions, showToast, Toasts, useEffect } from "@webpack/common";
+import { MessageActions, showToast, useEffect } from "@webpack/common";
 
 import { formatBytes,formatDate } from "../mediaUtils";
 import { MediaItem } from "../types";
@@ -70,16 +70,16 @@ export function MediaPreview({
             });
             onClosePreview();
         } catch {
-            showToast("Unable to jump to message", Toasts.Type.FAILURE);
+            showToast({ text: "Unable to jump to message", variant: "critical" });
         }
     };
 
     const handleCopyUrl = async () => {
         try {
             await copyToClipboard(item.url);
-            showToast("Media URL copied to clipboard!", Toasts.Type.SUCCESS);
+            showToast({ text: "Media URL copied to clipboard!", variant: "success" });
         } catch {
-            showToast("Failed to copy URL", Toasts.Type.FAILURE);
+            showToast({ text: "Failed to copy URL", variant: "critical" });
         }
     };
 
